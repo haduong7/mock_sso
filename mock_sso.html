@@ -146,7 +146,7 @@
 <body>
     <div class="login-container">
         <div class="logo">
-            <img src="adg-logo-blue-png.png" alt="AustDoor Group" />
+            <img src="./assets/images/adg-logo-blue-png.png" alt="AustDoor Group" />
             <p>Single Sign-On Portal</p>
         </div>
 
@@ -231,9 +231,16 @@
                 const mockToken = generateMockJWT();
                 const mockUserData = generateMockUserData();
 
-                // Create the deep link URL
-                const deepLinkUrl = `austapproval://auth?token=${mockToken}&userdata=${mockUserData}`;
+                // Use universal link for dev/GitHub Pages, custom scheme for production
+                const isDevEnvironment = window.location.hostname === 'localhost' || 
+                                        window.location.hostname.includes('github.io') ||
+                                        window.location.hostname.includes('netlify.app');
 
+                const deepLinkUrl = isDevEnvironment
+                    ? `https://auth.austdoor.com/mobile-callback?token=${mockToken}&userdata=${mockUserData}`
+                    : `austapproval://auth?token=${mockToken}&userdata=${mockUserData}`;
+
+                console.log('Environment:', isDevEnvironment ? 'Development' : 'Production');
                 console.log('Redirecting to:', deepLinkUrl);
                 console.log('Mock JWT Token:', mockToken);
                 console.log('Mock User Data:', decodeURIComponent(mockUserData));
