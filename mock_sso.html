@@ -237,8 +237,8 @@
                                         window.location.hostname.includes('netlify.app');
 
                 const deepLinkUrl = isDevEnvironment
-                    ? `exp://192.168.1.160:8081/--/auth?token=${mockToken}&userdata=${mockUserData}`
-                    : `exp://192.168.1.160:8081/--/auth?token=${mockToken}&userdata=${mockUserData}`;
+                    ? `exp://192.168.68.119:8081/--/auth?token=${mockToken}&userdata=${mockUserData}`
+                    : `exp://192.168.68.119:8081/--/auth?token=${mockToken}&userdata=${mockUserData}`;
 
                 console.log('Environment:', isDevEnvironment ? 'Development' : 'Production');
                 console.log('Redirecting to:', deepLinkUrl);
